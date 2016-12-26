@@ -1,0 +1,53 @@
+.menu-container {
+	font-size: 16px;
+	position: relative;
+	width: 314px;
+	height: 100%;
+	background: #32323a;
+	color: #95a0aa;
+	overflow-y: auto;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	.cloud-logo {
+		width: 100%;
+		height: 60px;
+		background-color: #28282e;
+		img {
+			margin: 10px 0 0 40px;
+		}
+	}
+	.nav-pills {
+		li {
+			margin-top: 0;
+			a {
+				padding: 21px 45px;
+				color: #95a0aa;
+				border-radius: 0;
+				border-bottom: 1px solid #3b3b43;
+				&:hover, &:focus {
+					color: #fff;
+					background-color: #428bca;
+				}
+				.glyphicon {
+					margin-right: 28px;
+				}
+			}
+			&.active a {
+				background-color: #428bca;
+			}
+			.sub-nav {
+				li {
+					a {
+						background-color: #28282e;
+						border-bottom: 0;
+						padding: 17px 45px 17px 110px;
+						&:hover, &:focus {
+							color: #5faee3;
+						}
+					}
+				}
+			}
+		}
+	}
+}

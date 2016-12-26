@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "es2015"
+  ],
+  "plugins": [
+    [
+      "transform-imports",
+      {
+        "fancyui": {
+          "transform": "fancyui/lib/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
+}

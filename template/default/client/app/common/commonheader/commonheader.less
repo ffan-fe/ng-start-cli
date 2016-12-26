@@ -1,0 +1,71 @@
+.menu-close {
+	.main-header {
+		left: 0;
+	}
+}
+.main-header {
+	position: fixed;
+	top: 0;
+	left: 314px;
+	right: 0;
+	height: 60px;
+	z-index: 80;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	.menu-bar {
+		width: 70px;
+		height: 100%;
+		display: inline-block;
+		border-right: 1px solid #ccc;
+		cursor: pointer;
+		.glyphicon {
+			font-size: 26px;
+			color: #666;
+			display: block;
+			text-align: center;
+			margin-top: 16px;
+		}
+	}
+	.user-container {
+		height: 100%;
+		float: right;
+		li {
+			list-style: none;
+			padding: 0 25px;
+			float: left;
+			height: 60px;
+			line-height: 60px;
+			color: #666;
+			font-size: 20px;
+			border-right: 1px solid #ccc;
+			position: relative;
+			&.user-info {
+				border-right: 0;
+				.user-profile {
+					width: 40px;
+					height: 40px;
+					display: inline-block;
+					margin: 0 14px;
+					border: 1px solid #eee;
+					border-radius: 20px;
+					vertical-align: middle;
+				}
+				.glyphicon {
+					font-size: 16px;
+				}
+			}
+			.glyphicon {
+				font-size: 22px;
+			}
+			.badge {
+				border-radius: 6px;
+				padding: .2em .4em;
+				font-size: 60%;
+				position: absolute;
+				top: 8px;
+				left: 36px;
+				background-color: #d9534f;
+			}
+		}
+	}
+}
