@@ -44,7 +44,7 @@ gulp.task('webpack', (cb) => {
   config.entry.app = paths.entry;
 
   webpack(config, (err, stats) => {
-    if(err)  {
+    if (err) {
       throw new gutil.PluginError("webpack", err);
     }
 
@@ -66,12 +66,12 @@ const custonConfig = require('./custom.env.config');
  * cookie 这里暂时先自己登陆一下, 然后获得cookie再拷贝进来
  */
 let chuckNorrisApiProxy = proxy(custonConfig.apiFilter, {
-    target: custonConfig.targetDomain,
-    changeOrigin: true,
-    logLevel: 'debug',
-    headers:{
-      Cookie: custonConfig.cookie
-    }
+  target: custonConfig.targetDomain,
+  changeOrigin: true,
+  logLevel: 'debug',
+  headers: {
+    Cookie: custonConfig.cookie
+  }
 });
 
 gulp.task('serve', () => {
@@ -89,7 +89,7 @@ gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
     open: false,
-    server: {baseDir: root},
+    server: { baseDir: root },
     middleware: [
       historyApiFallback(),
       webpackDevMiddelware(compiler, {

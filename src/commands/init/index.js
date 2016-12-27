@@ -31,7 +31,6 @@ function askInit() {
 
 export default program =>{
 
-  //console.log(program)
   program.command('init')
     .description('init project')
     .action(() => {

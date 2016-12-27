@@ -6,23 +6,18 @@
 'use strict';
 
 import angular from 'angular';
-import 'ffan-admin-skin';
 
-import ffanTable from 'ffan-ng-table';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import 'angular-busy/dist/angular-busy';
 import 'angular-busy/angular-busy.css';
-import ffanRouter from './router/router';
-
-
-
+import router from './router/router';
+import './skin/theme.less';
 
 angular.module('app', [
-    ffanRouter.name,
+    router.name,
     Common.name,
-    ffanTable.name,
     Components.name,
     'cgBusy'
   ])
