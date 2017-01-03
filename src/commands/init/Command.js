@@ -39,7 +39,7 @@ export default class Command {
   installPackage(targetDirectory) {
     console.log(colors.yellow('Installing begin: npm install -d'));
     return new Promise((resolve, reject) => {
-      const child = spawn('npm', ['install'], { cwd: targetDirectory, stdio: "inherit" });
+      const child = spawn(process.platform === "win32" ? "npm.cmd" : "npm", ['install'], { cwd: targetDirectory, stdio: "inherit" });
       child.on('close', () => {
         console.log(colors.green('install complete'));
         resolve(targetDirectory);
