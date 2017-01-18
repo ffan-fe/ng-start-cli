@@ -1,6 +1,6 @@
 {
   "name": "ng-start-cli",
-  "version": "1.0.3-beta",
+  "version": "1.0.5",
   "description": "",
   "main": "bin/index.js",
   "scripts": {
