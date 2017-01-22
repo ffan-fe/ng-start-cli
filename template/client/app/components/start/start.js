@@ -1,6 +1,7 @@
 import startComponent from './start.component';
-export default angular.module('start', [])
-/**
- * 请在routerConfig.js里定义路由
- */
+import {Button} from 'fancyui';
+
+export default angular.module('start', [
+  Button.name
+])
 .component('start', startComponent);
