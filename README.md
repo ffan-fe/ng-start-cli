@@ -4,6 +4,14 @@ fancyui的生成器,使用见:http://www.fancyui.org/#/zh-cn/component/install
 
 项目原型为内部系统Adam项目
 
+##文档索引
+
+ - [目录结构](./docs/dir.md)
+ - [组件](./docs/component.md)
+ - [gulp](./docs/gulp.md)
+ - [接口代理](./docs/proxy.md)
+ - [前端路由](./docs/router.md)
+
 ##快速上手
 
 ```
