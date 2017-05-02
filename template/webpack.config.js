@@ -32,10 +32,10 @@ module.exports = {
       {
         test: /.(gif|jpg|png)$/,
         loader: 'file?name=img-[hash].[ext]'
-      },
+      }
       {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: require.resolve('file-loader')
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+        loader: 'file?name=font-[hash].[ext]'
       }
     ]
   },
