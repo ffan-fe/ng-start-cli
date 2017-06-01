@@ -3,6 +3,9 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var colors = require('colors/safe');
 
+var HappyPack = require('happypack');
+var os = require('os');
+
 function moduleConsole(module){
   if(module && module.resource){
     let size = parseInt(module._source.size()/1000);
@@ -23,19 +26,22 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: [/app\/lib/, /node_modules\/(?!(fancyui)\/).*/], loader: 'ng-annotate!babel' },
-      //{ test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
-      { test: /\.html$/, loader: 'raw' },
-      { test: /\.less$/, loader: 'style!css!less' },
-      { test: /\.css$/, loader: 'style!css' },
+      {
+        test: /\.js$/,
+        exclude: [/app\/lib/, /node_modules\/(?!(fancyui)\/).*/],
+        loaders: ['happypack/loader?id=js']
+      },
+      {test: /\.html$/, loaders: ['happypack/loader?id=html']},
+      {test: /\.less$/, loaders: ['happypack/loader?id=less']},
+      {test: /\.css$/, loaders: ['happypack/loader?id=css']},
       // IMAGE
       {
-        test: /.(gif|jpg|png)$/,
-        loader: 'file?name=img-[hash].[ext]'
+        test: /.(gif|jpe?g|png)$/,
+        loaders: ['happypack/loader?id=img']
       },
       {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: require.resolve('file-loader')
+        test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+        loaders: ['happypack/loader?id=font']
       }
     ]
   },
@@ -45,6 +51,59 @@ module.exports = {
     }
   },
   plugins: [
+    new HappyPack({
+      id: 'js',
+      threads: os.cpus().length,
+      loaders: ['ng-annotate!babel']
+    }),
+  
+    new HappyPack({
+      id: 'less',
+      threads: os.cpus().length,
+      loaders: [
+      
+        {
+          loader: "style-loader"
+        },
+        {
+          loader: "css-loader",
+          options: {
+            minimize: true,
+          }
+        },
+        {
+          loader: "less-loader",
+        }]
+    }),
+    new HappyPack({
+      id: 'css',
+      threads: os.cpus().length,
+      loaders: [
+        {
+          loader: "style-loader"
+        },
+        {
+          loader: "css-loader",
+          options: {
+            minimize: true,
+          }
+        }]
+    }),
+    new HappyPack({
+      id: 'img',
+      threads: os.cpus().length,
+      loaders: ['file?name=assets/img/img-[hash].[ext]']
+    }),
+    new HappyPack({
+      id: 'html',
+      threads: os.cpus().length,
+      loaders: ['raw']
+    }),
+    new HappyPack({
+      id: 'font',
+      threads: os.cpus().length,
+      loaders: ['file-loader?name=assets/font/[name].[ext]']
+    }),
     // Injects bundles in your index.html instead of wiring all manually.
     // It also adds hash to all injected assets so we don't have problems
     // with cache purging during deployment.
