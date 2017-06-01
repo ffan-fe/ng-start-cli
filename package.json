@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node ./src/index.js",
     "build": "babel src --out-dir bin --ignore test.js",
-    "deploy-local": "cp -Rv ./* /Users/zouyi/.nvm/versions/node/v7.0.0/lib/node_modules/ng-start-cli/",
+    "deploy-local": "cp -Rv ./* $(which ng-start-cli)/../../ ",
     "prepublish":"npm run build"
   },
   "bin": {

@@ -4,7 +4,7 @@
   "description": "Starter for ffan admin system",
   "main": "index.js",
   "dependencies": {
-    "angular": "~1.5.0",
+    "angular": "1.5.9",
     "angular-ui-router": "^0.2.15",
     "bootstrap": "^3.3.7",
     "jquery": "^2.2.2",
@@ -52,13 +52,15 @@
     "webpack-dev-server": "^1.15.1",
     "yargs": "^3.9.0",
     "is-utf8": "^0.2.0",
-    "http-proxy-middleware": "^0.13.0"
+    "http-proxy-middleware": "^0.13.0",
+    "happypack": "^4.0.0-beta.1",
+    "webpack-parallel-uglify-plugin": "^0.4.1"
   },
   "scripts": {
     "test": "karma start",
     "add": "gulp component --name",
     "start": "gulp",
-    "build": "ng-start-cli build"
+    "build": "gulp webpack"
   },
   "keywords": [
     "angular",

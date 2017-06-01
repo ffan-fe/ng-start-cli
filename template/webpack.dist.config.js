@@ -3,6 +3,9 @@ var path    = require('path');
 var config  = require('./webpack.config');
 var customConfig = require('./custom.env.config');
 
+var os = require('os');
+var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+
 var distPath = customConfig.distPath;
 
 config.output = {
@@ -14,14 +17,24 @@ config.output = {
 
 config.plugins = config.plugins.concat([
   // Reduces bundles total size
-  new webpack.optimize.UglifyJsPlugin({
-    mangle: {
-      // You can specify all variables that should not be mangled.
-      // For example if your vendor dependency doesn't use modules
-      // and relies on global variables. Most of angular modules relies on
-      // angular global variable, so we should keep it unchanged
-      except: ['$super', '$', 'exports', 'require', 'angular']
-    }
+  new ParallelUglifyPlugin({
+    cacheDir: '../breeze_webpackcache', // Optional absolute path to use as a cache. If not provided, caching will not be used.
+    workerCount: os.cpus().length, // Optional int. Number of workers to run uglify. Defaults to num of cpus - 1 or asset count (whichever is smaller)
+    uglifyJS: {
+      // workers: os.cpus().length,
+      compress: {
+        warnings: false
+      },
+      sourceMap: false,
+      // mangle: false
+      mangle: {
+        // You can specify all variables that should not be mangled.
+        // For example if your vendor dependency doesn't use modules
+        // and relies on global variables. Most of angular modules relies on
+        // angular global variable, so we should keep it unchanged
+        except: ['$super', '$', 'exports', 'require', 'angular']
+      }
+    },
   }),
   new webpack.DefinePlugin({
     'process.env': {
