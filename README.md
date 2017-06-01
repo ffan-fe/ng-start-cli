@@ -35,8 +35,8 @@ ng-start-cli start
 ### 增加组件
 ```
 cd project/dir/
-npm run add "componentName"
-  or
+npm run add "componentName" 
+or
 gulp component --name "componentName"
 ```
 
