@@ -12,8 +12,8 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 var distPath = customConfig.distPath;
 
 config.output = {
-  filename: '[name].bundle.js',
-  chunkFilename:'[name].min.js',
+  filename: '[name].[chunkhash].bundle.js',
+  chunkFilename:'[name].[chunkhash].min.js',
   publicPath: '',
   path: distPath
 };

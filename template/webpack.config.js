@@ -92,7 +92,7 @@ module.exports = {
     new HappyPack({
       id: 'img',
       threads: os.cpus().length,
-      loaders: ['file-loader?name=assets/img/img-[hash].[ext]']
+      loaders: ['file-loader?name=assets/img/img-[chunkhash].[ext]']
     }),
     new HappyPack({
       id: 'html',
@@ -119,7 +119,7 @@ module.exports = {
     }),
     
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: ['vendor','manifest'],
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
