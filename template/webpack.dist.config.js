@@ -5,6 +5,9 @@ var customConfig = require('./custom.env.config');
 
 var os = require('os');
 var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
+var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 
 var distPath = customConfig.distPath;
 
@@ -41,6 +44,14 @@ config.plugins = config.plugins.concat([
       'NODE_ENV': JSON.stringify('sit'),
       'DEBUG': false
     }
+  }),
+  //引入manifest
+  new WebpackMd5Hash(),
+  new ManifestPlugin(),
+  new ChunkManifestPlugin({
+    filename: "chunk-manifest.json",
+    manifestVariable: "webpackManifest",
+    inlineManifest: true
   })
 ]);
 
