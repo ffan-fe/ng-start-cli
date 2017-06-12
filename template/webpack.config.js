@@ -92,12 +92,12 @@ module.exports = {
     new HappyPack({
       id: 'img',
       threads: os.cpus().length,
-      loaders: ['file?name=assets/img/img-[hash].[ext]']
+      loaders: ['file-loader?name=assets/img/img-[chunkhash].[ext]']
     }),
     new HappyPack({
       id: 'html',
       threads: os.cpus().length,
-      loaders: ['raw']
+      loaders: ['raw-loader']
     }),
     new HappyPack({
       id: 'font',
@@ -108,7 +108,7 @@ module.exports = {
     // It also adds hash to all injected assets so we don't have problems
     // with cache purging during deployment.
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
+      template: 'client/index.ejs',
       inject: 'body',
       hash: true
     }),
@@ -119,7 +119,7 @@ module.exports = {
     }),
     
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: ['vendor','manifest'],
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
